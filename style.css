@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    width: 165px;
+    margin: 20px auto;
+    border: 2px solid green;
+}
+form{
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+input{
+    width: 160px;
+    height: 60px;
+}
+button{
+    width: 40px;
+    height: 40px;
+}
+#igual{
+    height: 80px;
+}
+.btn0{
+    position: absolute;
+    bottom: 0;
+}
+.btnvir{
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+}
+.btndel{
+    position: absolute;
+    bottom: 0;
+    right: 25%;
+}
