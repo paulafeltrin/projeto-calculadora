@@ -6,37 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
     <link rel="stylesheet" href="style.css">
-    <script src="js/scripts.js" defer></script>
 </head>
 <body>
     <div id="style-calc">
         <h1>Calculadora</h1>
-        <div id="operations">
+        <div id="resultado">
             <div id="before-operation"></div>
             <div id="now-operation"></div>
         </div>    
         <div class="btn-box">
-            <button>CE</button>
-            <button>C</button>
-            <button>DEL</button>
-            <button>+</button>
-            <button class="btn_num">7</button>
-            <button class="btn_num">8</button>
-            <button class="btn_num">9</button>
-            <button>-</button>
-            <button class="btn_num">4</button>
-            <button class="btn_num">5</button>
-            <button class="btn_num">6</button>
-            <button>x</button>
-            <button class="btn_num">1</button>
-            <button class="btn_num">2</button>
-            <button class="btn_num">3</button>
-            <button>/</button>
-            <button class="btn_num">0</button>
-            <button class="btn_num">.</button>
-            <button>%</button>
-            <button id="btn-equal">=</button>
+            <button onclick="calcular('acao', 'ce')">CE</button>
+            <button onclick="calcular('acao', 'c')">C</button>
+            <button onclick="calcular('acao', 'del')">DEL</button>
+            <button onclick="calcular('acao', '+')">+</button>
+            <button onclick="calcular('valor', '7')" class="btn_num">7</button>
+            <button onclick="calcular('valor', '8')" class="btn_num">8</button>
+            <button onclick="calcular('valor', '9')" class="btn_num">9</button>
+            <button onclick="calcular('acao', '-')">-</button>
+            <button onclick="calcular('valor', '4')" class="btn_num">4</button>
+            <button onclick="calcular('valor', '5')" class="btn_num">5</button>
+            <button onclick="calcular('valor', '6')" class="btn_num">6</button>
+            <button onclick="calcular('acao', '*')">x</button>
+            <button onclick="calcular('valor', '1')" class="btn_num">1</button>
+            <button onclick="calcular('valor', '2')" class="btn_num">2</button>
+            <button onclick="calcular('valor', '3')" class="btn_num">3</button>
+            <button onclick="calcular('acao', '/')">/</button>
+            <button onclick="calcular('valor', '0')" class="btn_num">0</button>
+            <button onclick="calcular('acao', '.')" class="btn_num">.</button>
+            <button onclick="calcular('acao', '%')">%</button>
+            <button onclick="calcular('acao', '=')" id="btn-equal">=</button>
         </div>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
