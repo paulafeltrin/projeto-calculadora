@@ -1,77 +1,148 @@
-// CAMANDO O HTML PARA O JAVASCRIPT
-var mostrar_valor = document.querySelector(".display");
-var operador = "";
-var parar = false;
+// LINKANDO HTML PARA O JAVASCRIPT
+const beforeOperation = document.querySelector("#before-operation");
+const nowOperation = document.querySelector("#now-operation");
+const buttons = document.querySelectorAll("#btn-box button");
 
-function limpar() {
-    mostrar_valor.value = "";
-    document.querySelector("#historico").innerHTML = "";
-    operador = ""
+class Calculator {
+  constructor(beforeOperation, nowOperation) { //DECLARAÇÃO DE CLASSE (estilo arrow function)
+    this.beforeOperation = beforeOperation;
+    this.nowOperation = nowOperation;
+    this.nowOperation = "";
   }
 
-function add_num(string){
-    if (!parar) {
-        if (string === '.' && mostrar_valor.value.indexOf(".") === -1 || string !== '.') {
-          mostrar_valor.value = mostrar_valor.value + string;
-          historico.value = mostrar_valor.value;
-        }
-      } else {
-        if (string === '.' && mostrar_valor.value.indexOf(".") === -1 || string !== '.') {
-          mostrar_valor.value = "";
-          parar = false;
-          document.querySelector("#historico").innerHTML = "";
-          operador = "";
-    
-          mostrar_valor.value = mostrar_valor.value + string;
-          console.log(mostrar_valor.value = mostrar_valor.value + string)
-        }
+  addDig(digit) {
+    console.log(digit);
+    if (digit === "." && this.nowOperation.innerText.includes(".")) {
+      return;
+    }
+
+    this.nowOperation = digit;
+    this.update();
+  }
+
+  processOp(operation) {
+    // Check if current value is empty
+    if (this.nowOperation.innerText === "" && operation !== "C") {
+      // Change operation
+      if (this.beforeOperation.innerText !== "") {
+        this.changeOperation(operation);
       }
+      return;
     }
 
-    function operador(operator){
-        if (mostrar_valor.value == ""){
-            mostrar_valor.value = "0"
-        }
+  // Get current and previous values
+  let operationValue;
+  let previous = +beforeOperation.innerText.split(" ")[0];
+  let current = +this.nowOperation.innerText;
 
-        if (operador = ""){
-            operador = operator;
-            mostrar_valor.value = mostrar_valor.value + operator;
-        }else{
-            total()
-            mostrar_valor.value = mostrar_valor.value + operator;
-            operador = operator;
-            parar=false;
-        }
+switch (operation) {
+  case "+":
+    operationValue = previous + current;
+    this.updateScreen(operationValue, operation, current, previous);
+    break;
+  case "-":
+    operationValue = previous - current;
+    this.updateScreen(operationValue, operation, current, previous);
+    break;
+  case "*":
+    operationValue = previous * current;
+    this.updateScreen(operationValue, operation, current, previous);
+    break;
+  case "/":
+    operationValue = previous / current;
+    this.updateScreen(operationValue, operation, current, previous);
+    break;
+  case "DEL":
+    this.processDelOperator();
+    break;
+  case "CE":
+    this.processClearCurrentOperator();
+    break;
+  case "C":
+    this.processClearOperator();
+    break;
+  case "=":
+    this.processEqualOperator();
+    break;
+  default:
+    return;
+}
+
+ // Change values of calculator screen
+ updateScreen(
+  operationValue = null,
+  operation = null,
+  now = null,
+  before = null
+) 
+{
+  if (operationValue === null) {
+    // Append number to current value
+    this.nowOperation.innerText += this.nowOperation;
+  } else {
+    // Check if value is zero, if is just add current value
+    if (before === 0) {
+      operationValue = nowOperation;
     }
+    // Add current value to previous
+    this.beforeOperation.innerText = `${operationValue} ${operation}`;
+    this.nowOperation.innerText = "";
+  }
+}
 
-function total() {
-    if (!parar) {
-        num = mostrar_valor.value.split(operador);
-    
-        if (num[1] == "") {
-        mostrar_valor.value = mostrar_valor.value + '0';
-        num[1] = 0;
-        }
-        document.querySelector("#history").innerHTML = input.value;
+// Change math operation
+changeOp(operation) 
+{
+  const mathOperations = ["*", "-", "+", "/"];
 
-    switch (operador) {
-      case "+":
-        mostrar_valor.value = Number(num[0]) + Number(num[1]);
-        break;
+  if (!mathOperations.includes(operation)) {
+    return;
+  }
 
-      case "-":
-        mostrar_valor.value = Number(num[0]) - Number(num[1]);
-        break;
+    this.beforeOperation.innerText =
+    this.beforeOperation.innerText.slice(0, -1) + operation;
+}
 
-      case "*":
-        mostrar_valor.value = Number(num[0]) * Number(num[1]);
-        break;
+// Delete a digit
+processDel() 
+{
+    this.nowOperation.innerText =
+    this.nowOperation.innerText.slice(0, -1);
+}
 
-      case "/":
-        mostrar_valor.value = Number(num[0]) / Number(num[1]);
-        break;
+// Clear current operation
+processClearNowOperation() 
+{
+  this.nowOperation.innerText = "";
+}
+
+// Clear all operations
+processClearOperator() 
+{
+  this.nowOperation.innerText = "";
+  this.beforeOperation.innerText = "";
+}
+
+// Process an operation
+processEqua() 
+{
+  let operation = this.beforeOperation.innerText.split(" ")[1];
+
+  this.processOperation(operation);
+}
+}
+
+calc = new Calculator(beforeOperation, nowOperation);
+
+buttonsforEach(btn) {
+    btn.addEventListener("click", (e)) ; {
+    const value = e.target.innerText;
+    if (+value >= 0 || value === ".") {
+      console.log(value);
+      calc.addDigit(value);
+    } else {
+      calc.processOperation(value);
     }
-
-    parar = true;
-    }
+  }
+}
 }
