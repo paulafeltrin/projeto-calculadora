@@ -24,23 +24,13 @@ body{
     font-weight: lighter;
     color: #8d8d8d;
 }
-#operations{
-    text-align: end;
-}
-
-#before-operation, 
-#now-operation{
-    min-height: 1.6rem;
+#resultado{
+    min-height: 4rem;
     padding: 0.2em;
     overflow-wrap: break-word;
-}
-#before-operation{
-    color: rgb(75, 75, 75);
-    font-size: 1.5rem;
-}
-#now-operation{
+    text-align: end;
     font-size: 3.2rem;
-    font-weight: 600;
+    font-weight: 500;
 }
 .btn-box{
     display: grid;
@@ -69,4 +59,5 @@ button:hover {
 }
 #btn-equal{
     background-color: #9748e1;
+    grid-column: span 2;
 }

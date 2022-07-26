@@ -1,23 +1,26 @@
-function calcular(tipo, valor) {
-  console.log(tipo, valor)
-
-  if (tipo === 'acao') {
-
-      if (valor === 'c') {
-          //limpar a tela
-          document.getElementById('resultado').value = ''
-      }
-
-      if (valor === '+' || valor === '-' || valor === '*' || valor === '/' || valor === '.') {
-          document.getElementById('resultado').value += valor
-      }
-
-      if (valor === '=') {
-          var valor_campo = eval(document.getElementById('resultado').value)
-          document.getElementById('resultado').value = valor_campo
-      }
-  } else if (tipo === 'valor') {
-      document.getElementById('resultado').value += valor
-  }
-
-}
+function acao(num)
+        {
+            const numero = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = numero + num;
+        }
+        function clean()
+        {
+            document.getElementById('resultado').innerHTML = "";
+        }
+        function del()
+        {
+            const resultado = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length -1);
+        }
+        function calcular()
+        {
+            const resultado = document.getElementById('resultado').innerHTML;
+            if(resultado)
+            {
+                document.getElementById('resultado').innerHTML = eval(resultado);
+            }
+            else
+            {
+                document.getElementById('resultado').innerHTML = "Eror..."
+            }
+        }
