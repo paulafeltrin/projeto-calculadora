@@ -7,6 +7,11 @@ function acao(num)
         {
             document.getElementById('resultado').innerHTML = "";
         }
+        function percentagem() {
+            const n1 = document.getElementById('resultado').innerHTML
+            const n2 = document.getElementById('resultado').innerHTML
+            const resultado = document.getElementById('resultado').innerHTML =  (n1 * 100) / n2 ;
+        }
         function del()
         {
             const resultado = document.getElementById('resultado').innerHTML;
